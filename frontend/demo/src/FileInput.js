@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
 
-
-
 class FileInput extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.uploadSingleFile = this.uploadSingleFile.bind(this);
         this.fileInput = React.createRef();
@@ -15,14 +13,14 @@ class FileInput extends Component {
         this.singleFileUploadSuccess = document.querySelector('#singleFileUploadSuccess');
     }
     handleSubmit(event) {
+        event.preventDefault();
         var files = singleFileUploadInput.files;
         if (files.length === 0) {
             singleFileUploadError.innerHTML = "Please select a file";
             singleFileUploadError.style.display = "block";
         }
         this.uploadSingleFile(files[0]);
-        this.props.onChnagee(this.fileInput.current.files[0].name);
-        event.preventDefault();
+
     }
 
     uploadSingleFile(file) {
@@ -44,8 +42,8 @@ class FileInput extends Component {
                 singleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
             }
         }
-
         xhr.send(formData);
+        this.props.history.push(`/verResultados/${file.name}`);
     }
 
     render() {

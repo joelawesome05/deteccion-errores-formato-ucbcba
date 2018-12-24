@@ -10,10 +10,8 @@ import {
   Tip,
   Highlight,
   Popup,
-  AreaHighlight,
-  FileInput
+  AreaHighlight
 } from "../../src";
-
 
 import testHighlights from "./test-highlights";
 
@@ -47,30 +45,24 @@ const HighlightPopup = ({ comment }) =>
     </div>
   ) : null;
 
-var DEFAULT_URL = "https://arxiv.org/pdf/1708.08021.pdf";
+const DEFAULT_URL = "https://arxiv.org/pdf/1708.08021.pdf";
 
-var searchParams = new URLSearchParams(location.search);
-var url = searchParams.get("url") || DEFAULT_URL;
+const searchParams = new URLSearchParams(location.search);
+var url = " ";
 
 class App extends Component<Props, State> {
 
-  constructor() {
-    super();
-    this.handle = this.handle.bind(this);
+  constructor(props) {
+    super(props);
+    url = "https://cors-anywhere.herokuapp.com/" + "https://sheltered-sierra-80124.herokuapp.com/downloadFile/" + `${this.props.match.params.name}`;
   }
 
   state = {
-    highlights: testHighlights[url] ? [...testHighlights[url]] : [],
-    link: "hola"
+    highlights: [],
+    link: ''
   };
 
   state: State;
-
-  handle(newLink) {
-    this.setState({
-      link: newLink
-    })
-  }
 
   resetHighlights = () => {
     this.setState({
@@ -145,10 +137,6 @@ class App extends Component<Props, State> {
             position: "relative"
           }}
         >
-          <FileInput onChnagee={this.handle}></FileInput>
-          <p style={{ color: "black" }}>
-            HOLAA este es mi string: {this.state.link}.
-          </p>
           <PdfLoader url={url} beforeLoad={<Spinner />}>
             {pdfDocument => (
               <PdfHighlighter

@@ -2,10 +2,10 @@
 
 import React from "react";
 import { render } from "react-dom";
-import App from "./App";
+import Home from "./Home";
 
 const demoNode = document.querySelector("#demo");
 
 if (demoNode) {
-  render(<App />, demoNode);
+  render(<Home />, demoNode);
 }

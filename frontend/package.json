@@ -1,6 +1,6 @@
 {
   "name": "react-pdf-highlighter",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Set of React components for PDF annotation",
   "main": "lib/index.js",
   "proxy": {
@@ -21,17 +21,20 @@
     "precommit": "npm run flow",
     "deploy": "npm run build && gh-pages --dist ./demo/dist --branch gh-pages",
     "prepublishOnly": "npm run build && npm run copy-files",
-    "prettier": "prettier --write 'src/**/*.js' 'demo/src/**/*.js'",
-    "eject": "react-scripts eject"
+    "prettier": "prettier --write 'src/**/*.js' 'demo/src/**/*.js'"
   },
   "dependencies": {
+    "bootstrap": "4.1.3",
     "lodash": "^4.17.10",
     "pdfjs-dist": "2.0.489",
+    "react-cookie": "3.0.4",
     "react-pointable": "^1.1.1",
     "react-rnd": "^7.1.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "react-router-dom": "4.3.1",
+    "reactstrap": "6.5.0"
   },
   "peerDependencies": {
     "react": ">=0.14",
